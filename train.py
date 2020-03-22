@@ -21,8 +21,10 @@ print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
 
+cut_index = 40000
+print("updated length:" + str(cut_index))
 # Convert class vectors to binary class matrices.
-y_train = keras.utils.to_categorical(y_train, num_classes)
+y_train = keras.utils.to_categorical(y_train[:cut_index], num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
 model = Sequential()
@@ -56,7 +58,7 @@ model.compile(loss='categorical_crossentropy',
               optimizer=opt,
               metrics=['accuracy'])
 
-x_train = x_train.astype('float32')
+x_train = x_train[:cut_index].astype('float32')
 x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
@@ -108,7 +110,7 @@ else:
     model.fit_generator(datagen.flow(x_train, y_train,
                                      batch_size=batch_size),
                         epochs=epochs,
-                        steps_per_epoch=1550,
+                        steps_per_epoch=1250,
                         validation_data=(x_test, y_test),
                         workers=4)
 
