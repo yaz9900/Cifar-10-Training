@@ -21,7 +21,7 @@ print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
 
-cut_index = 25000
+cut_index = 50000
 print("updated length:" + str(cut_index))
 # Convert class vectors to binary class matrices.
 y_train = keras.utils.to_categorical(y_train[:cut_index], num_classes)
@@ -110,7 +110,7 @@ else:
     model.fit_generator(datagen.flow(x_train, y_train,
                                      batch_size=batch_size),
                         epochs=epochs,
-                        steps_per_epoch=1250,
+                        steps_per_epoch=1550,
                         validation_data=(x_test, y_test),
                         workers=4)
 
