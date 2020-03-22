@@ -21,7 +21,7 @@ print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
 
-cut_index = 40000
+cut_index = 25000
 print("updated length:" + str(cut_index))
 # Convert class vectors to binary class matrices.
 y_train = keras.utils.to_categorical(y_train[:cut_index], num_classes)
